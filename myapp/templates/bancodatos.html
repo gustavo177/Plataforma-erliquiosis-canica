@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" type="text/css" href='{% static "css/banco.css" %}'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Datos</title>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'principal' %}" class="back-link">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+        
+        <div class="titulo">
+            <h1>Banco de Datos</h1> 
+        </div>
+
+        <div class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+                <label for="tipo_prueba">Tipo de Prueba:</label>
+                <select id="tipo_prueba" name="tipo_prueba" required>
+                    <option value="">Seleccione...</option>
+                    <option value="Aliento">Aliento</option>
+                    <option value="opcion2">Opción 2</option>
+                    <option value="opcion3">Opción 3</option>
+                </select>
+                <div class="boton-centrado">
+                    <input type="submit" value="Buscar">
+                </div>
+            </form>
+        </div>
+
+        <div class="file-list">
+            <h2>Lista de Archivos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre del Archivo</th>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    <tr>
+                        <td>archivo1.txt</td>
+                        <td>Aliento</td>
+                        <td>2024-10-28</td>
+                        <td><a href="#">Descargar</a></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

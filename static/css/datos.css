@@ -1,0 +1,96 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    width: 90%;
+    max-width: 800px; 
+    text-align: center;
+}
+
+.back-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #0056b3;
+}
+
+
+.titulo h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+
+.file-list {
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.file-list table {
+    width: 110%; 
+    height: 100%;
+    border-collapse: collapse;
+    margin: 0 auto; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.file-list th, .file-list td {
+    border: 1px solid #0b0c0c; 
+    padding: 10px;
+    font-size: 14px;
+    vertical-align: middle;
+    position: relative;
+}
+
+
+.file-list th:not(:last-child), .file-list td:not(:last-child) {
+    border-right: 2px solid #0f1010; 
+}
+
+.file-list th {
+    background-color: #3c94ec;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.file-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.file-list tr:hover {
+    background-color: #e9f5ff;
+    transition: background-color 0.3s;
+}
+
+
+.file-list td a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.file-list td a:hover {
+    text-decoration: underline;
+}

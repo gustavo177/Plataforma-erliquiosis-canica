@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href='{% static "css/eliminar.css" %}'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Usuario</title>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'principal' %}" class="back-link">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+
+        <div class="titulo">
+            <h1>Eliminar Usuario</h1> 
+        </div>
+
+        {% if messages %}
+            <ul class="mensaje-error">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form action="{% url 'Eliminar' %}" method="POST">
+            {% csrf_token %}
+            <label for="id_canino">ID del Canino:</label>
+            <input type="text" id="id_canino" name="id_canino" placeholder="ID Canino" required>
+            <input type="submit" value="Eliminar Usuario">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/listado_1.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Pacientes</title>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'principal' %}" class="back-link">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+        
+        <div class="titulo">
+            <h1>Listado de Pacientes</h1>
+        </div>
+        
+        <form action="{% url 'resultadospacientes' %}" method="POST">
+            {% csrf_token %}
+            {% if mensaje_error1 %}
+                <div class="mensaje-error">
+                    <p>{{ mensaje_error1 }}</p>
+                </div>
+            {% endif %}
+            
+            <label for="Numero_Id">Número ID del Canino:</label>
+            <input type="text" id="Numero_Id" name="Numero_Id" placeholder="Número ID" required>
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
+</body>
+</html>

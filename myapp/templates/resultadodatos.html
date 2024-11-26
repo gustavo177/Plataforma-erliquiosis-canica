@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href='{% static "css/datos.css" %}'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Datos</title>
+</head>
+<body>
+    <div>
+        <a href="{% url 'bancodatos' %}" style="text-decoration: none;">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+    </div>
+    
+    <div class="file-list">
+        <div class="titulo">
+            <h1>Banco de Datos</h1> 
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre del Archivo</th>
+                    <th>Tipo de Prueba</th>
+                    <th>Fecha</th>
+                    <th>Diagnostico</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if prueba %}
+                    {% for p in prueba %}
+                        <tr>
+                            <td>{{ p.id }}</td>
+                            <td>{{ p.archivo.name }}</td>
+                            <td>{{ p.tipo_prueba }}</td>
+                            <td>{{ p.created_at }}</td>
+                            <td>{{ p.get_diagnostico_display }}</td>
+
+                            <td>
+                                <div class="button-container">
+                                    <a href="{{ p.archivo.url }}" class="download-btn" download>Descargar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">No se encontraron resultados.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

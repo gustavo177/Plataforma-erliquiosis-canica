@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" type="text/css" href='{% static "css/login.css" %}'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h1 class="login-title">Iniciar Sesión</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="id_canino"><strong>ID Canino:</strong></label>
+                    <div class="input-wrapper">
+                        <input type="text" name="username" placeholder="ID Canino" required>
+                        <i class="fas fa-user icon"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="contraseña"><strong>Contraseña:</strong></label>
+                    <div class="input-wrapper">
+                        <input type="password" name="password" placeholder="Contraseña" required>
+                        <i class="fas fa-lock icon"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-button">Iniciar Sesión</button>
+                <div class="register-link">
+                    <p>¿Necesitas una cuenta? <a href="{% url 'registro' %}">Registrarse</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

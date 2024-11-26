@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Procesamiento de Datos</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="{% static 'img/imagen.jpg' %}" alt="Imagen Principal" class="imagen-principal">
+            <div class="botones-container">
+                <a href="{% url 'login' %}" class="boton">Iniciar Sesión</a>
+                <a href="{% url 'registro' %}" class="boton">Regístrarse</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="titulo-seccion">
+            <h1>Diseño de una Plataforma para el Procesamiento de Datos en Línea</h1>
+            <p class="subtitulo">Procesamiento de datos a partir de muestras biológicas de pacientes con erliquiosis canina.</p>
+            <p class="descripcion">El sistema recopila, almacena, analiza y visualiza datos sobre la enfermedad en los caninos de manera segura y eficiente.</p>
+        </section>
+
+        <section class="funciones-seccion">
+            <h2>Funciones Principales</h2>
+            <div class="funciones-grid">
+                <div class="funcion-item">
+                    <h3>Recolección de Datos</h3>
+                    <p>Adquiere datos generados a partir de muestras caninas, como saliva, pelo, etc.</p>
+                </div>
+                <div class="funcion-item">
+                    <h3>Formulario de Pacientes</h3>
+                    <p>Permite registrar y almacenar información detallada sobre cada paciente.</p>
+                </div>
+                <div class="funcion-item">
+                    <h3>Visualización en Tiempo Real</h3>
+                    <p>Monitorea los datos en tiempo real para garantizar su funcionamiento correcto.</p>
+                </div>
+                <div class="funcion-item">
+                    <h3>Bases de Datos Seguras</h3>
+                    <p>Los datos recolectados están encriptados para mayor seguridad y privacidad.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p class="footer-texto">© 2024 Plataforma de Datos para Caninos con Erliquiosis y sin Erliquiosis.</p>
+    </footer>
+</body>
+</html>

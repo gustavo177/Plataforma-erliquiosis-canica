@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/resultado_1.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado Análisis</title>
+    <style>
+        body{
+            margin-top: 55%;
+            margin-bottom: 55%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .centrarTitulos{
+            display: flex;
+            justify-content: center;
+            font-size: 26px;
+        }
+        .tamanioPCA{
+            width: 50%;
+            height: 50%;
+        }
+        .containerPCAyComponentes{
+            display: flex;
+            justify-content: space-around;
+            padding: 0;
+            align-items: center;
+        }
+        .posicionarMatriz{
+            display: flex;
+            justify-content: space-between;  
+            margin: 10px 0 10px 0;
+        }
+        .texto{
+            width: 1300px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="volver">
+        <a href="{% url 'formulario' %}" class="volver-link">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+        
+    </div>
+
+    <div>
+        <div class="centrarTitulos">
+            <h1>Resultados de análisis</h1>
+        </div>
+
+        <div>
+            <h1>Tabla de resultante</h1>
+        </div>
+
+        <div>
+            <p style="font-size: 16px; line-height: 1.6; text-align: justify; color: #333;">
+                A continuación, podrán visualizar la tabla resultante, donde se aplicaron métricas de características como la fórmula <strong>Gmax-Gmin</strong>. 
+                En la <strong>columna 9</strong>, se muestra la clasificación, donde:
+            </p>
+            <ul style="font-size: 16px; line-height: 1.6; color: #333; margin-left: 20px;">
+                <li><strong>0:</strong> Representa a los caninos que contienen la enfermedad <em>erliquiosis</em>.</li>
+                <li><strong>1:</strong> Representa a los caninos sanos.</li>
+            </ul>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    {% for col in datosDF.0 %}
+                    {% if forloop.counter <= 8 %}
+                    <th>Columna {{ forloop.counter }}</th>
+                    {% elif forloop.counter == 9 %}
+                    <th>Columna 9</th>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in datosDF %}
+                <tr>
+                    {% for value in row %}
+                    {% if forloop.counter <= 8 %}
+                    <!-- Mostrar los primeros 5 dígitos de las columnas 1 a 8 -->
+                    <td>{{ value|stringformat:".5s" }}</td>
+                    {% elif forloop.counter == 9 %}
+                    <!-- Mostrar la columna 9 completa -->
+                    <td>{{ value }}</td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h1>Anális de datos</h1>
+        <div class="containerPCAyComponentes">
+            {% if grafico_pca %}
+            <div class="tamanioPCA">
+                {{ grafico_pca|safe }}
+            </div>
+            {% else %}
+            <p>No se pudo generar el gráfico PCA.</p>
+            {% endif %}
+
+
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Componente 1</th>
+                            <th>Componente 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in componentes_pca %}
+                        <tr>
+                            <td>{{ row.0 }}</td>
+                            <td>{{ row.1 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="texto">
+            <p>En esta estapa se realiza un análisis de clasificación mediante validación cruzada 
+                estratificada utilizando un modelo de red neuronal que evalúa el desempeño en 
+                cada partición con matrices de confusión y métricas de precisión promedio para 
+                interpretar visualmente la calidad de las predicciones.</p>
+        </div>
+
+        <div>
+            <h1>Con la escala de MinMaxScaler logramos obtener una precisión media del
+                {{ promedioMinMaxScaler}}%</h1>
+        </div>
+
+        <div class="posicionarMatriz">
+            {% for matriz in matrices_confusion_MinMaxScaler %}
+                <div class="cajas">
+                    {{ matriz|safe }}
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+        <!-- ------------------------------ promedioMinMaxScaler -->
+        <div>
+            <h1>Con la escala de StandardScaler logramos obtener una precisión media del
+                {{ promedioStandardScaler }}%</h1>
+        </div>
+
+        <div class="posicionarMatriz">
+            {% for matriz in matrices_confusion_html_StandardScaler %}
+                <div class="cajas">
+                    {{ matriz|safe }}
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+        <!-- ------------------------------- promedioStandardScaler -->
+        <div>
+            <h1>Con la escala de UantileTransformerScaler logramos obtener una precisión media del
+                {{ promedioUantileTransformerScaler }}%</h1>
+        </div>
+
+        <div class="posicionarMatriz">
+            {% for matriz in matrices_confusion_UantileTransformerScaler %}
+                <div class="cajas">
+                    {{ matriz|safe }}
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+        <!-- ------------------------------- promedioUantileTransformerScaler -->
+
+        <div>
+            <h1>Con la escala de FunctionTransformerScaler logramos obtener una precisión media del
+                {{ promedioFunctionTransformerScaler }}%</h1>
+        </div>
+
+        <div class="posicionarMatriz">
+            {% for matriz in matrices_confusion_FunctionTransformerScaler %}
+                <div class="cajas">
+                    {{ matriz|safe }}
+                </div>
+                <br>
+            {% endfor %}
+        </div>
+        <!-- ---------------------------FunctionTransformerScaler -->
+        
+        
+    </div>
+
+    
+</body>
+</html>

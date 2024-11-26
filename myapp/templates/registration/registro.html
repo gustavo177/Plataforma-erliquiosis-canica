@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href='{% static "css/registros_1.css" %}'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+</head>
+<body>
+    <div class="container">
+        <div class="titulo">
+            <h1>Registro Canino</h1>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+            <label for="id_canino"><strong>ID del Canino:</strong></label>
+            <div class="input-group">
+                <input type="text" id="id_canino" name="username" required>
+                <i class="fas fa-user icon"></i>
+            </div>
+            
+            <label for="password_canino"><strong>Contraseña:</strong></label>
+            <div class="input-group">
+                <input type="password" id="password_canino" name="password" required>
+                <i class="fas fa-lock icon"></i>
+            </div>
+
+            <label for="password_confirm"><strong>Confirmar Contraseña:</strong></label>
+            <div class="input-group">
+                <input type="password" id="password_confirm" name="password1" required>
+                <i class="fas fa-lock icon"></i>
+            </div>
+        
+            <input type="submit" value="Crear Cuenta">
+            
+            <div class="login">
+                <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Inicia Sesión</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

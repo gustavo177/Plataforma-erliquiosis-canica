@@ -1,0 +1,107 @@
+
+body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+form {
+    width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #bae4c1;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+
+.titulo h1 {
+    color: #007bff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    margin: 0 auto;
+}
+
+
+input[type="text"],
+input[type="password1"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+   
+}
+
+form input[type="submit"] {
+    width: 40%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 auto; 
+    display: block;
+}
+form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.sign-up-divider {
+    text-align: center;
+    margin-top: 20px;
+}
+.social-media {
+    text-align: center;
+    margin-top: 20px;
+}
+.social-media-icons {
+    list-style-type: none;
+    padding: 0;
+}
+.social-media-icons li {
+    display: inline-block;
+    margin: 0 10px;
+}
+.social-media-icons li a {
+    color: #333;
+    font-size: 24px;
+}
+.login {
+    text-align: center;
+    margin-top: 10px;
+}
+.login p {
+    font-size: 16px;
+    margin: 0;
+}
+.login a {
+    color: #007bff;
+    text-decoration: none;
+}
+.image-container {
+    text-align: center;
+    margin-top: 50px; 
+  
+}
+
+.image-container img {
+    border: 2px solid black; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}

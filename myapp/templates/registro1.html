@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href='{% static "css/registro_2.css" %}'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro del Canino</title>
+</head>
+<body>
+    <a href="{% url 'principal' %}" style="text-decoration: none;">
+        <i class="fas fa-arrow-left"></i> Pagina Anterior
+    </a>
+    <div class="container">
+        <div class="header">
+            
+            <h1>Registro del Canino</h1>
+        </div>
+        <form method="POST" enctype="multipart/form-data" onsubmit="showLoading()">
+            {% csrf_token %}
+            
+            <div class="file-input-container">
+                <label for="image_file" class="custom-file-upload">
+                    Seleccionar Imagen
+                </label>
+                <input type="file" id="image_file" name="image_file" accept="image/*" onchange="showFileName()">
+                <span class="file-name" id="file-name">Ningún archivo seleccionado</span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="id_canino">ID del Canino:</label>
+                    <input type="text" id="id_canino" name="id_canino" placeholder="ID Canino" required>
+                </div>
+                <div class="form-group">
+                    <label for="nombre_canino">Nombre del Canino:</label>
+                    <input type="text" id="nombre_canino" name="nombre_canino" placeholder="Nombre del Canino" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre_dueño">Nombre del dueño:</label>
+                    <input type="text" id="nombre_dueño" name="nombre_dueño" placeholder="Nombre del dueño" required>
+                </div>
+                <div class="form-group">
+                    <label for="años_canino">Años del Canino:</label>
+                    <input type="text" id="años_canino" name="años_canino" placeholder="Años Canino" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" id="cedula" name="cedula" placeholder="Cédula" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" placeholder="Teléfono" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+               
+                <div class="form-group">
+                    <label for="Dictamen">Dictamen:</label>
+                    <textarea id="Dictamen" name="Dictamen" placeholder="Añadir una descripción..."></textarea>
+                </div>
+            </div>
+
+            <div class="boton-centrado">
+                <input type="submit" value="Registrar">
+            </div>
+            <div class="loading" id="loading">Subiendo imagen, por favor espere...</div>
+        </form>
+    </div>
+
+    <script>
+        function showFileName() {
+            const input = document.getElementById('image_file');
+            const fileName = input.files[0] ? input.files[0].name : 'Ningún archivo seleccionado';
+            document.getElementById('file-name').innerText = fileName;
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

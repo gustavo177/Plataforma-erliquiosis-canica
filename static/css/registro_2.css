@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+.container {
+    background-color: #fff; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 20px; 
+    width: 90%; 
+    max-width: 600px; 
+}
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #007bff;
+}
+
+.file-input-container {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.file-input-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.file-input-container input[type="file"] {
+    display: none;
+}
+
+.file-input-container label.custom-file-upload {
+    border: 1px solid #007bff;
+    color: #007bff;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.file-input-container label.custom-file-upload:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.file-name {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: 90%; 
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border: 1px solid #007bff;
+    outline: none;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+.boton-centrado {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.boton-centrado input[type="submit"] {
+    width: 40%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-centrado input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.loading {
+    display: none;
+    font-size: 18px;
+    color: #007bff;
+    text-align: center;
+    margin-top: 20px;
+}

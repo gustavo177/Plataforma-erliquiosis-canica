@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/resultado.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Pacientes</title>
+</head>
+<body>
+    <div class="container">
+        <div class="volver">
+            <a href="{% url 'listado_paciente' %}" style="text-decoration: none;">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+        <div class="titulo">
+            <h1>Resultados de Pacientes</h1>
+        </div>
+
+        {% if canino %}
+        <div class="info-imagen">
+            {% if canino.imagen %}
+            <img src="{{ canino.imagen.url }}" alt="Imagen del Canino">
+            {% endif %}
+        </div>
+        <div class="info-canino">
+            <h2>Información del Canino</h2>
+            <p><strong>ID:</strong> {{ canino.id_canino }}</p>
+            <p><strong>Nombre:</strong> {{ canino.nombre_canino }}</p>
+            <p><strong>Dueño:</strong> {{ canino.nombre_dueño }}</p>
+            <p><strong>Cédula:</strong> {{ canino.cedula }}</p>
+            <p><strong>Teléfono:</strong> {{ canino.telefono }}</p>
+            <p><strong>Años del Canino:</strong> {{ canino.años_canino }}</p>
+            <p><strong>Dictamen:</strong> {{ canino.dictamen }}</p>
+        </div>
+
+        <div class="pruebas-realizadas">
+            <h3>Pruebas Realizadas</h3>
+            <ul class="pruebas-list">
+                {% for prueba in pruebas %}
+                <li>
+                    <strong>Tipo de Prueba:</strong> {{ prueba.get_tipo_prueba_display }}
+                    <br>
+                    <strong>Diagnóstico:</strong> {{ prueba.get_diagnostico_display }}
+                    <br>
+                    <strong>Archivo:</strong> {{ prueba.archivo.name }}
+                    <br>
+                    <strong>Fecha de Creación:</strong> {{ prueba.created_at|date:"F d, Y" }}
+                    <form action="{% url 'eliminar_prueba' prueba.id %}" method="POST" style="margin-top: 10px;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-eliminar">Eliminar Archivo</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="pagination">
+            {% if pruebas.has_previous %}
+                <a href="?page={{ pruebas.previous_page_number }}">&laquo; Anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ pruebas.number }} de {{ pruebas.paginator.num_pages }}
+            </span>
+
+            {% if pruebas.has_next %}
+                <a href="?page={{ pruebas.next_page_number }}">Siguiente &raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
